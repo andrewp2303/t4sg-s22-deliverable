@@ -3,11 +3,11 @@ import { Container, Row, Col } from "reactstrap";
 import { useQuery } from "urql";
 import CaseCard, { CaseData } from "./CaseCard";
 
-type CaseCategoryProps = {
+export type CaseCategoryProps = {
   category_id: number;
 };
 
-type CaseCategoryData = {
+export type CaseCategoryData = {
   name: string;
   cases: CaseData[];
 };

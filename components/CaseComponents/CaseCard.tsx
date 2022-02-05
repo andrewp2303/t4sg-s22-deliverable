@@ -51,12 +51,18 @@ const CaseCard: React.FC<CaseCardProps> = (props) => {
           </CardSubtitle>
           <CardText>{caseData.description}</CardText>
           {/*
-            ALTERNATE FEATURE 1 TODO:
+            ALTERNATE FEATURE 1:
             Use the data on tags found in props to render out all
-            of the tags associated with every case.
+            of the tags associated with every case. 
+            NOTE: NOT FUNCTIONAL YET
           */}
-
-          {/* END TODO */}
+          {caseData.cases_tags
+              ? caseData.cases_tags.map((c: TagData) => {
+                  return <CardText value={c.id}>
+                  {c.name}
+                </CardText>;
+                })
+              : ""}
         </Card>
       </div>
     </Container>

@@ -16,6 +16,7 @@ import {
   ManagementCategory,
   ManagementContainerQuery,
 } from "../CaseManagementContainer";
+import { CaseData, TagData } from "../CaseCard";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -51,19 +52,20 @@ query QueryCasesAndTags {
 `;
 
 /* 
-  ALTERNATE FEATURE 2 TODO:
-  Write a mutation that will insert (add) a new tag given the
-  name, and case_id.
-  
-  Make sure to replace the string that is currently
-  in this variable 
+  ALTERNATE FEATURE 2:
+  Mutation inserts (adds) a new tag given the
+  tag_id and case_id.
+  FUNCTIONAL
 */
 const InsertTagMutation = `
-query MyQuery {
-  __typename # Placeholder value
+mutation AddTagMutation($case_id: Int = 2, $tag_id: Int = 1) {
+  insert_cases_tags_one(object: {case_id: $case_id, tag_id: $tag_id}) {
+    id
+    case_id
+    tag_id
+  }
 }
 `;
-// END TODO
 
 const AddTagModal: React.FC<AddTagModalProps> = (props) => {
   const classes = useStyles();
@@ -95,12 +97,19 @@ const AddTagModal: React.FC<AddTagModalProps> = (props) => {
                 }}
               >
                 {/*
-                ALTERNATE FEATURE 2 TODO:
+                ALTERNATE FEATURE 2:
                 Use the data from the result of the query CasesAndTagsQuery
                 to render a MenuItem with cases.id as the value, and 
                 cases.name as the text.
+                FUNCTIONAL
                 */}
-                {/* END TODO */}
+                {data
+              ? data.cases.map((c: CaseData) => {
+                  return <MenuItem value={c.id}>
+                  {c.name}
+                </MenuItem>;
+                })
+              : "Something went wrong"}
               </Select>
             </FormControl>
             <FormControl fullWidth>
@@ -118,8 +127,15 @@ const AddTagModal: React.FC<AddTagModalProps> = (props) => {
                 Use the data from the result of the query CasesAndTagsQuery
                 to render a MenuItem with tags.id as the value, and 
                 tags.name as the text.
+                FUNCTIONAL
                 */}
-                {/* END TODO */}
+                {data
+              ? data.tags.map((c: TagData) => {
+                  return <MenuItem value={c.id}>
+                  {c.name}
+                </MenuItem>;
+                })
+              : "Something went wrong"}
               </Select>
             </FormControl>
           </>

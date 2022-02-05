@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-type AddCaseModalProps = {
+type DeleteCaseModalProps = {
   open: boolean;
   onClose: () => void;
 };
@@ -52,7 +52,7 @@ mutation AddCaseMutation($name: String = "", $description: String = "", $status:
 }
 `;
 
-const AddCaseModal: React.FC<AddCaseModalProps> = (props) => {
+const DeleteCaseModal: React.FC<DeleteCaseModalProps> = (props) => {
   const classes = useStyles();
   const [name, setName] = useState<string>("");
   const [description, setDescription] = useState<string>("");
@@ -67,9 +67,9 @@ const AddCaseModal: React.FC<AddCaseModalProps> = (props) => {
   return (
     <StyledModal open={props.open} onClose={props.onClose}>
       <Typography variant="h4" align="center">
-        Add New Case
+        Feature In Progress
       </Typography>
-      <Box>
+      {/* <Box>
         <TextField
           id="standard-full-width"
           label="Name"
@@ -124,12 +124,6 @@ const AddCaseModal: React.FC<AddCaseModalProps> = (props) => {
                 setCategory(event.target.value as number);
               }}
             >
-              {/*
-                FEATURE 2:
-                Use the data from the result of the query ManagementContainerQuery
-                to render a MenuItem with category id as the value, and the 
-                category name as the text.
-              */}
               {data
               ? data.category.map((c: ManagementCategory) => {
                   return <MenuItem value={c.id}>
@@ -142,24 +136,21 @@ const AddCaseModal: React.FC<AddCaseModalProps> = (props) => {
         ) : fetching ? (
           "Loading Categories"
         ) : null}
-      </Box>
-      <Box mt="10px" display="flex" justifyContent="center">
+      </Box> */}
+      {/* <Box mt="10px" display="flex" justifyContent="center">
         <Button
           variant="outlined"
           onClick={() => {
             executeMutation({
-              description,
-              name,
-              status,
-              category_id: category,
+              case_id: category,
             });
             props.onClose();
           }}
         >
           Submit
         </Button>
-      </Box>
+      </Box> */}
     </StyledModal>
   );
 };
-export default AddCaseModal;
+export default DeleteCaseModal;
