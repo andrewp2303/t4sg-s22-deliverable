@@ -111,9 +111,9 @@ const CaseManagementContainer: React.FC = (props) => {
           a CaseCategory for every category in the response
           */}
           {categories
-          ? categories.map((c: ManagementCategory) => {
+          ? categories.map((c: ManagementCategory, index: number) => {
               return <Grid item xs={4}>
-                <CaseCategory category_id={c.id} />
+                <CaseCategory key={index} category_id={c.id} />
                 </Grid>;
             })
           : "Something went wrong"}

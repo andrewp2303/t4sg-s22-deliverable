@@ -57,8 +57,8 @@ const CaseCard: React.FC<CaseCardProps> = (props) => {
             NOTE: NOT FUNCTIONAL YET
           */}
           {caseData.cases_tags
-              ? caseData.cases_tags.map((c: TagData) => {
-                  return <CardText value={c.id}>
+              ? caseData.cases_tags.map((c: TagData, index: number) => {
+                  return <CardText key={index} value={c.id}>
                   {c.name}
                 </CardText>;
                 })
