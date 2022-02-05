@@ -104,8 +104,8 @@ const AddTagModal: React.FC<AddTagModalProps> = (props) => {
                 FUNCTIONAL
                 */}
                 {data
-              ? data.cases.map((c: CaseData) => {
-                  return <MenuItem value={c.id}>
+              ? data.cases.map((c: CaseData, index: number) => {
+                  return <MenuItem key={index} value={c.id}>
                   {c.name}
                 </MenuItem>;
                 })
@@ -130,8 +130,8 @@ const AddTagModal: React.FC<AddTagModalProps> = (props) => {
                 FUNCTIONAL
                 */}
                 {data
-              ? data.tags.map((c: TagData) => {
-                  return <MenuItem value={c.id}>
+              ? data.tags.map((c: TagData, index: number) => {
+                  return <MenuItem key={index} value={c.id}>
                   {c.name}
                 </MenuItem>;
                 })
